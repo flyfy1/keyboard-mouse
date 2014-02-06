@@ -35,11 +35,8 @@ class PreviousKey{
 		if(key == null) return DEFAULT_SPEED;
 		
 		int speed;
-		if((currentStroke.getModifiers() & this.key.getModifiers()) == this.key.getModifiers()
-				&& currentStroke.getKeyCode() == this.key.getKeyCode()){
+		if(currentStroke.getKeyCode() == this.key.getKeyCode()){
 			speed = this.speed;
-		} else if((currentStroke.getModifiers() & KeyEvent.META_DOWN_MASK) != 0){
-			speed = FAST_SPEED_MUL * DEFAULT_SPEED;
 		} else{
 			speed = DEFAULT_SPEED;
 		}
@@ -99,9 +96,12 @@ public class App
 					bot.mouseMove(currentLocation.x, currentLocation.y);
 					break;
 				case 'U':
-					mouseClick(bot,InputEvent.BUTTON2_MASK);
+					mouseClick(bot,InputEvent.BUTTON1_MASK);
 					break;
 				case 'I':
+					mouseClick(bot,InputEvent.BUTTON2_MASK);
+					break;
+				case 'O':
 					mouseClick(bot,InputEvent.BUTTON3_MASK);
 					break;
 				}
@@ -131,18 +131,11 @@ public class App
 		};
 		
     	
-		String directionKeys = "HJKL";
-		for(int i = 0 ; i < directionKeys.length(); i++){
-			provider.register(KeyStroke.getKeyStroke(directionKeys.charAt(i),
-					KeyEvent.SHIFT_DOWN_MASK | KeyEvent.CTRL_DOWN_MASK),keyListener);
-			provider.register(KeyStroke.getKeyStroke(directionKeys.charAt(i),
-					KeyEvent.SHIFT_DOWN_MASK | KeyEvent.CTRL_DOWN_MASK | KeyEvent.META_DOWN_MASK),keyListener);
+		String keysToRegister = "HJKLUIO";
+		for(int i = 0 ; i < keysToRegister.length(); i++){
+			provider.register(KeyStroke.getKeyStroke(keysToRegister.charAt(i),
+					KeyEvent.SHIFT_DOWN_MASK | KeyEvent.META_DOWN_MASK),keyListener);
 		}
 		
-		String clickKeys = "UIO";
-		for(int i = 0 ; i < clickKeys.length(); i++){
-			provider.register(KeyStroke.getKeyStroke(clickKeys.charAt(i),
-					KeyEvent.SHIFT_DOWN_MASK | KeyEvent.CTRL_DOWN_MASK),keyListener);
-		}
     }
 }
