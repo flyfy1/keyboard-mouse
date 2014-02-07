@@ -8,6 +8,9 @@ KeyBoard Controlled Mouse.. so that one can operate the mouse simply using keybo
 1. By pressing a pre-set global shortcut, one is able to move the mouse, fast/slow
 2. By pressing another set of key, one is able to perform the mouse's left/middle/right button's click
 
+## How to run:
+`mvn exec:java -Dexec.mainClass="me.songyy.App"`
+
 ## How To Use:
 Cmd + Shift + `key stroke below`:
 - H / J / K / L: following the VIM direction, move the mouse to corresponding direction. The movement would speed up if moved towards the same direction, continously.
